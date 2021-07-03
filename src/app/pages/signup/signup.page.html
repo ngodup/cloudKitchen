@@ -1,0 +1,77 @@
+<ion-content>
+  <div class="background-pic">
+    <div class="background-filter">
+      <div class="shape"><img src="../../../assets/shape.svg" /></div>
+      <div>
+        <form [formGroup]="form" (ngSubmit)="saveDetails()">
+          <ion-list>
+            <ion-item class="ion-margin-bottom">
+              <ion-label position="floating">Your Name</ion-label>
+              <ion-input type="text" formControlName="name"></ion-input>
+            </ion-item>
+            <small *ngIf="form.get('name').invalid && (form.get('name').dirty ||form.get('name').touched )">
+              <small *ngIf="(form.get('name')).errors?.required">Name is required</small>
+              <!--question mark(?) is a safe navigation operator-->
+              <small *ngIf="(form.get('name')).errors?.minlength">Please enter more than 4 character</small>
+            </small>
+
+            <ion-item class="ion-margin-bottom">
+              <ion-label position="floating">Your Email address</ion-label>
+              <ion-input type="email" formControlName="email"></ion-input>
+            </ion-item>
+
+            <div *ngIf="(form.get('email').invalid && (form.get('email')).touched) || (form.get('email')).dirty">
+              <small *ngIf="(form.get('email')).errors?.required">Email is required</small>
+              <!--question mark(?) is a safe navigation operator-->
+              <small *ngIf="(form.get('email')).errors?.pattern">Please provide a valid email address</small>
+            </div>
+            
+            <ion-item class="ion-margin-bottom">
+              <ion-label position="floating">Your Phone</ion-label>
+              <ion-input type="phone" formControlName="phone"></ion-input>
+            </ion-item>
+
+            <div *ngIf="(form.get('phone').invalid && (form.get('phone')).touched) || (form.get('phone')).dirty">
+              <small *ngIf="(form.get('phone')).errors?.required">Email is required</small>
+              <!--question mark(?) is a safe navigation operator-->
+              <small *ngIf="(form.get('phone')).errors?.minlength">Please enter correct phone number</small>
+              <small *ngIf="(form.get('phone')).errors?.maxlength">Please provide correct phone number</small>
+            </div>
+
+
+            <ion-item>
+              <ion-label>Select Nearest Location</ion-label>
+              <ion-select formControlName="locationID">
+                <ion-select-option *ngFor="let location of locations" [value]="location.id">
+                  {{ location.main }} - {{ location.sub }}
+                </ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item class="ion-margin-bottom">
+              <ion-label position="floating">Password</ion-label>
+              <ion-input type="password" formControlName="password"></ion-input>
+            </ion-item>
+            <small *ngIf="form.get('password').invalid && (form.get('password').dirty ||form.get('password').touched )">
+              Password is required.
+            </small>
+
+            <ion-item class="ion-margin-bottom">
+              <ion-label position="floating">Confirm Password</ion-label>
+              <ion-input type="password" formControlName="confirmPassword"></ion-input>
+            </ion-item>
+            <small
+              *ngIf="form.get('confirmPassword').invalid && (form.get('confirmPassword').dirty ||form.get('confirmPassword').touched )">
+              Confirm password is required.
+            </small>
+
+            <ion-item class="ion-float-right" lines="none">
+              <ion-button color="primary" [disabled]="!form.valid" type="submit">Save Details</ion-button>
+              <ion-button color="primary" (click)="onReset()">Reset Form</ion-button>
+            </ion-item>
+          </ion-list>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</ion-content>

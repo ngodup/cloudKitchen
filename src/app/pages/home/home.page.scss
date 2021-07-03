@@ -1,0 +1,39 @@
+ion-content {
+  --padding-top: 2rem;
+  --padding-start: 1rem;
+  --padding-end: 2rem;
+  margin: auto;
+  
+  ion-searchbar {
+    --box-shadow: none;
+    --background: #f3f3f3;
+    --border-radius: 1.2rem;
+    --placeholder-font-weight: 600;
+    --placeholder-opacity: 0.2;
+  
+    padding: 0;
+    margin-bottom: 2rem;
+  }
+
+  .categories {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1rem;
+  }
+
+  .list-header {
+    font-weight: 700;
+    color: #515151;
+    font-size: 1.8rem;
+    margin-bottom: 1.6rem;
+    margin-top: 2.5rem;
+  }
+
+  .food-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
+  }
+
+}
+

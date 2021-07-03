@@ -1,0 +1,45 @@
+<ion-content [fullscreen]="true" class="ion-margin">
+  <ion-searchbar search-icon="search"></ion-searchbar>
+
+  <!-- Food Categories -->
+  <div class="categories">
+    <app-category *ngFor="let item of categories" [item]="item"></app-category>
+  </div>
+
+
+  <!-- Food Item -->
+  <h1 class="list-header">Popular</h1>
+  <div class="food-list">
+    <app-food-item *ngFor="let food of foods" [item]="food" (clicked)="goToFoodDetails(food.id)"></app-food-item>
+  </div>
+
+  <form #form="ngForm" (ngSubmit)="addTodo()" class="ion-padding">
+    <ion-item>
+      <ion-label>Task Name</ion-label>
+      <ion-input [(ngModel)]="todo.name" name="name" placeholder="add task"></ion-input>
+      <ion-toggle color="primary" slot="end" [(ngModel)]="todo.done" name="done"></ion-toggle>
+    </ion-item>
+    <ion-item class="no-lines ion-float-right">
+      <ion-button type="submit" expand="block" shape="round">
+        {{ actionLabel }}
+      </ion-button>
+      <ion-button (click)="clear()" expand="block" shape="round">
+        Reset Task
+      </ion-button>
+    </ion-item>
+  </form>
+
+
+  <ion-item>
+    <ion-label>Main Location</ion-label>
+    <ion-select>
+      <ion-select-option *ngFor="let location of locations" value="location">{{ location.main }}</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Sub Area</ion-label>
+    <ion-select>
+      <ion-select-option *ngFor="let location of locations">{{ location.sub }}</ion-select-option>
+    </ion-select>
+  </ion-item>
+</ion-content>
